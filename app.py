@@ -7,7 +7,7 @@ import pickle
 st.set_page_config(page_title='Singapore Flat Resale Price Predictor', layout='wide',
                    initial_sidebar_state='expanded')
 
-st.markdown("<h1 style='text-align: center; color: blue;'>Singapore Flat Resale Price Prediction</h1>", unsafe_allow_html=True)
+st.markdown("<h1 style='text-align: center; color: purple;'>Singapore Flat Resale Price Prediction</h1>", unsafe_allow_html=True)
 
 # Load the data
 df = pd.read_csv(r'C:\Users\visha\OneDrive\Desktop\capstone_5\singapore_land_data.csv')
@@ -37,17 +37,10 @@ with tab1:
         st.write('## Tools and Technologies used')
         st.write('Python, Pandas, numpy, matplotlib, seaborn, Streamlit, sklearn')
         st.write('## :red[ML Model]')
-        st.write('* The ML model used in this project is :blue[Random Forest Regressor].')
-        st.write('* Comparing other regressors, Random Forest Regressor had a high :red[R-squared score], which means it has performed best.')
+        st.write('* The ML model used in this project is :blue[Decision tree Regressor].')
+        st.write('* Comparing other regressors, Decision tree Regressor had a high :red[R-squared score], which means it has performed best.')
 
-with tab2:
-    option = st.radio('**Select your option**', ('Processed Data', 'Prediction Tab'), horizontal=True)    
-
-    if option == 'Processed Data':
-        st.header("Processed Final Data")
-        st.write(df)
-
-    if option == 'Prediction Tab':    
+with tab2:  
         col3, col4, col5 = st.columns(3, gap="small")  
 
         with col3:
@@ -852,7 +845,7 @@ with tab2:
                 storey_lower_bound = st.number_input('Storey Lower Bound', min_value=1,max_value=49, value=1)
                 storey_upper_bound = st.number_input('Storey Upper Bound', min_value=3,max_value=51, value=3)
                
-               #		r	storey_lower_bound	storey_upper_boun
+      
                
                 prediction_input = pd.DataFrame({
      'town': [town],
@@ -875,4 +868,4 @@ with tab2:
             # Make prediction
         if st.button('Predict'):
                 prediction = model.predict(prediction_input)
-                st.write(f'Predicted Resale Price: ${prediction[0]:,.2f}')
+                st.write(f'Predicted Resale Price: {prediction[0]:,.2f}')
